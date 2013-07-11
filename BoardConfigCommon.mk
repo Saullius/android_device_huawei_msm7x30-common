@@ -11,8 +11,8 @@ ARCH_ARM_HAVE_VFP := true
 TARGET_HAVE_TSLIB := true
 BOARD_WANTS_EMMC_BOOT := true
 
-#TARGET_QCOM_DISPLAY_VARIANT := caf
-#TARGET_QCOM_AUDIO_VARIANT := caf
+TARGET_QCOM_DISPLAY_VARIANT := legacy
+TARGET_QCOM_AUDIO_VARIANT := caf
 
 TARGET_BOARD_PLATFORM := msm7x30
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
@@ -57,7 +57,7 @@ BOARD_ADRENO_DECIDE_TEXTURE_TARGET := true
 # Qcom/Display
 TARGET_USES_ION := false
 #TARGET_NO_HW_OVERLAY := true
-#TARGET_NO_HW_VSYNC := true
+TARGET_NO_HW_VSYNC := true
 TARGET_NO_HDMI := true
 #BOARD_EGL_NEEDS_LEGACY_FB := true
 #NUM_FRAMEBUFFER_SURFACE_BUFFERS :=3
@@ -81,12 +81,13 @@ WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/bcm4329.ko"
 WIFI_DRIVER_FW_PATH_STA          := "/system/vendor/firmware/fw_bcm4329.bin"
 WIFI_DRIVER_FW_PATH_AP           := "/system/vendor/firmware/fw_bcm4329_apsta.bin"
 WIFI_DRIVER_MODULE_ARG           := "firmware_path=/system/vendor/firmware/fw_bcm4329.bin nvram_path=/system/vendor/firmware/nvram.txt"
-BOARD_USE_SERNUM_FOR_MAC := true
+# flag for huawei
+BOARD_USE_HUAWEI_BCM_WIFI := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/huawei/msm7x30-common/bluetooth
+BOARD_BLUEDROID_VENDOR_CONF := device/huawei/msm7x30-common/bluetooth/vnd_mione_plus.txt
 
 # GPS
 BOARD_USES_QCOM_GPS := true

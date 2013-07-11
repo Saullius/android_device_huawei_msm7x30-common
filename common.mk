@@ -56,7 +56,11 @@ PRODUCT_PACKAGES += \
 # Lights
 PRODUCT_PACKAGES += \
     lights.msm7x30
-    
+
+# Mac Address
+PRODUCT_PACKAGES += \
+    libreadmac
+
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm7x30
@@ -156,8 +160,7 @@ PRODUCT_COPY_FILES += \
 # BLUETOOTH
 PRODUCT_COPY_FILES += \
     device/huawei/msm7x30-common/prebuilt/etc/dhcpcd/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
-    device/huawei/msm7x30-common/prebuilt/etc/bluetooth/BCM4329.hcd:system/vendor/firmware/BCM4329.hcd \
-    device/huawei/msm7x30-common/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
+    device/huawei/msm7x30-common/prebuilt/etc/bluetooth/BCM4329.hcd:system/vendor/firmware/BCM4329.hcd
     
 # WIFI
 PRODUCT_COPY_FILES += \
@@ -171,13 +174,6 @@ PRODUCT_COPY_FILES += \
 
 # Firmware
 PRODUCT_COPY_FILES += \
-    device/huawei/msm7x30-common/prebuilt/etc/firmware/a225p5_pm4.fw:system/etc/firmware/a225p5_pm4.fw \
-    device/huawei/msm7x30-common/prebuilt/etc/firmware/a225_pfp.fw:system/etc/firmware/a225_pfp.fw \
-    device/huawei/msm7x30-common/prebuilt/etc/firmware/a225_pm4.fw:system/etc/firmware/a225_pm4.fw \
-    device/huawei/msm7x30-common/prebuilt/etc/firmware/a300_pfp.fw:system/etc/firmware/a300_pfp.fw \
-    device/huawei/msm7x30-common/prebuilt/etc/firmware/a300_pm4.fw:system/etc/firmware/a300_pm4.fw \
-    device/huawei/msm7x30-common/prebuilt/etc/firmware/leia_pfp_470.fw:system/etc/firmware/leia_pfp_470.fw \
-    device/huawei/msm7x30-common/prebuilt/etc/firmware/leia_pm4_470.fw:system/etc/firmware/leia_pm4_470.fw \
     device/huawei/msm7x30-common/prebuilt/etc/firmware/vidc_720p_command_control.fw:system/etc/firmware/vidc_720p_command_control.fw \
     device/huawei/msm7x30-common/prebuilt/etc/firmware/vidc_720p_h263_dec_mc.fw:system/etc/firmware/vidc_720p_h263_dec_mc.fw \
     device/huawei/msm7x30-common/prebuilt/etc/firmware/vidc_720p_h264_dec_mc.fw:system/etc/firmware/vidc_720p_h264_dec_mc.fw \
@@ -185,8 +181,6 @@ PRODUCT_COPY_FILES += \
     device/huawei/msm7x30-common/prebuilt/etc/firmware/vidc_720p_mp4_dec_mc.fw:system/etc/firmware/vidc_720p_mp4_dec_mc.fw \
     device/huawei/msm7x30-common/prebuilt/etc/firmware/vidc_720p_mp4_enc_mc.fw:system/etc/firmware/vidc_720p_mp4_enc_mc.fw \
     device/huawei/msm7x30-common/prebuilt/etc/firmware/vidc_720p_vc1_dec_mc.fw:system/etc/firmware/vidc_720p_vc1_dec_mc.fw \
-    device/huawei/msm7x30-common/prebuilt/etc/firmware/yamato_pfp.fw:system/etc/firmware/yamato_pfp.fw \
-    device/huawei/msm7x30-common/prebuilt/etc/firmware/yamato_pm4.fw:system/etc/firmware/yamato_pm4.fw \
     device/huawei/msm7x30-common/prebuilt/etc/firmware/cyttsp_7630_fluid.hex:system/etc/firmware/cyttsp_7630_fluid.hex
 
 # KEY
