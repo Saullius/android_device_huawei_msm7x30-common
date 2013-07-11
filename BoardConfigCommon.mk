@@ -87,7 +87,7 @@ BOARD_USE_HUAWEI_BCM_WIFI := true
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
-BOARD_BLUEDROID_VENDOR_CONF := device/huawei/msm7x30-common/bluetooth/vnd_mione_plus.txt
+BOARD_BLUEDROID_VENDOR_CONF := device/huawei/msm7x30-common/bluetooth/vnd_msm7x30.txt
 
 # GPS
 BOARD_USES_QCOM_GPS := true
