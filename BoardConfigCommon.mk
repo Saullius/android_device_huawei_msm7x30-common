@@ -99,6 +99,7 @@ BOARD_GPS_LIBRARIES := libloc_api
 TARGET_PROVIDES_LIBLIGHT := true
 
 # Kernel
+TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.4.3
 TARGET_KERNEL_SOURCE := kernel/huawei/honor
 BOARD_KERNEL_CMDLINE := console=ttyDCC0 androidboot.hardware=huawei
 BOARD_INSTALLER_CMDLINE := $(BOARD_KERNEL_CMDLINE)

@@ -57,10 +57,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     lights.msm7x30
 
-# Mac Address
-PRODUCT_PACKAGES += \
-    libreadmac
-
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm7x30
