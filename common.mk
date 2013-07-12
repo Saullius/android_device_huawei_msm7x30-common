@@ -156,7 +156,7 @@ PRODUCT_COPY_FILES += \
 # BLUETOOTH
 PRODUCT_COPY_FILES += \
     device/huawei/msm7x30-common/prebuilt/etc/dhcpcd/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
-    device/huawei/msm7x30-common/prebuilt/etc/bluetooth/BCM4329.hcd:system/vendor/firmware/BCM4329.hcd
+    device/huawei/msm7x30-common/prebuilt/etc/bluetooth/BCM4329.hcd:system/etc/firmware/BCM4329.hcd
     
 # WIFI
 PRODUCT_COPY_FILES += \
