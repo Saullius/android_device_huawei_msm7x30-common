@@ -29,7 +29,7 @@
     <bool name="enableSplitSMS">true</bool>
 
     <!-- User-Agent parameter used in MMS http request -->
-    <string name="userAgent">Mi-2</string>
+    <string name="userAgent">U8800Pro</string>
 
     -->
 
