@@ -35,6 +35,14 @@
 static pthread_once_t g_init = PTHREAD_ONCE_INIT;
 static pthread_mutex_t g_lock = PTHREAD_MUTEX_INITIALIZER;
 
+//#define DEBUG_TAG
+#undef DEBUG_TAG
+#ifdef DEBUG_TAG
+#define ALOGDD  ALOGD
+#else
+#define ALOGDD do{}while(0);
+#endif
+
 #define TRUE    1
 #define FALSE   0
 static int led_link_status = FALSE;
@@ -77,11 +85,14 @@ void *led_blink(void *arg){
         write_int(BLUE_LED_FILE, par.BLUE);
         write_int(GREEN_LED_FILE, par.GREEN);
         usleep(par.onMs*1000);
-        write_int(RED_LED_FILE, 0);
-        write_int(BLUE_LED_FILE, 0);
-        write_int(GREEN_LED_FILE, 0);
+        if (g_leds[1].color > 0) {
+            write_int(RED_LED_FILE, 0);
+            write_int(BLUE_LED_FILE, 0);
+            write_int(GREEN_LED_FILE, 0);
+        }
         usleep(par.offMs*1000);
     }
+    ALOGDD("%s Exit\n", __func__);
     pthread_exit((void *)0);
     return 0;
 }
@@ -155,8 +166,8 @@ static int set_light_backlight(struct light_device_t *dev,
 
     pthread_mutex_lock(&g_lock);
     err = write_int(PANEL_FILE, brightness);
-
     pthread_mutex_unlock(&g_lock);
+
     return err;
 }
 
@@ -166,6 +177,7 @@ set_light_buttons(struct light_device_t* dev,
 {
     int err = 0;
     int on = is_lit(state);
+
     pthread_mutex_lock(&g_lock);
     err = write_int(BUTTON_FILE, on?255:0);
     pthread_mutex_unlock(&g_lock);
@@ -176,7 +188,7 @@ set_light_buttons(struct light_device_t* dev,
 
 static int close_lights(struct light_device_t *dev)
 {
-    ALOGV("close_light is called");
+    ALOGDD("close_light is called");
     if (dev)
         free(dev);
 
@@ -188,20 +200,14 @@ static int write_leds(const struct led_config *led)
 {
     unsigned int colorRGB = led->color & 0x00FFFFFF;
 
-    ALOGD("%s: color=%#08x, delay_on=%d, delay_off=%d.",
+    ALOGDD("%s: color=%#08x, delay_on=%d, delay_off=%d.",
           __func__, led->color, led->delay_on, led->delay_off);
 
     pthread_mutex_lock(&g_lock);
 
-    if(led == NULL){
-        write_int (RED_LED_FILE, 0);
-        write_int (GREEN_LED_FILE, 0);
-        write_int (BLUE_LED_FILE, 0);
-    } else{
-        write_int (BLUE_LED_FILE, (colorRGB & 0xFF)? 255 : 0);
-        write_int (GREEN_LED_FILE, ((colorRGB >> 8)&0xFF)? 255 : 0);
-        write_int (RED_LED_FILE, ((colorRGB >> 16)&0xFF)? 255 : 0);
-    }
+    write_int(BLUE_LED_FILE, (colorRGB & 0xFF)? 255 : 0);
+    write_int(GREEN_LED_FILE, ((colorRGB >> 8)&0xFF)? 255 : 0);
+    write_int(RED_LED_FILE, ((colorRGB >> 16)&0xFF)? 255 : 0);
     
     pthread_mutex_unlock(&g_lock);
 
@@ -213,13 +219,14 @@ static int set_light_leds(struct light_state_t const *state, int type)
     struct led_config *led;
     int err = 0;
 
-    ALOGD("%s: type=%d, color=%#010x, fM=%d, fOnMS=%d, fOffMs=%d.", __func__,
+    ALOGDD("%s: type=%d, color=%#010x, fM=%d, fOnMS=%d, fOffMs=%d.", __func__,
           type, state->color,state->flashMode, state->flashOnMS, state->flashOffMS);
 
     if (type < 0 || (unsigned int)type >= sizeof(g_leds)/sizeof(g_leds[0])){
                 ALOGD("ERROR");
                 return -EINVAL;
     }
+
     /* type is one of:
      *   0. battery
      *   1. notifications
@@ -269,6 +276,12 @@ static int set_light_leds(struct light_state_t const *state, int type)
 
     led->color = state->color & 0x00FFFFFF;
 
+
+    ALOGDD("Queue Info:\n\tbattery->color\t\t=\t%#010x\n\tnotifications->color\t=\t%#010x\n\tattention->color\t=\t%#010x", \
+        g_leds[0].color, \
+        g_leds[1].color, \
+        g_leds[2].color);
+
     if (led->color > 0) {
         /* This LED is lit. */
         if (type >= g_cur_led) {
@@ -278,11 +291,12 @@ static int set_light_leds(struct light_state_t const *state, int type)
         }
     } else {
         /* This LED is not (any longer) lit. */
-        if ((type == g_cur_led)&&(type != 0)) {
+        if (type > 0) { //Don't check type any more, if typy isn't battery, then check the queue list.
             /* But it is currently showing, switch to a lower-priority LED. */
             int i;
             for (i = type-1; i >= 0; i--) {
                 if (g_leds[i].color > 0) {
+                    ALOGDD("%s is avalible", (i == (1-1))? "battery" : ((i == (2-1))? "notifications" : "attention"));
                     /* Found a lower-priority LED to switch to. */
                     err = write_leds(&g_leds[i]);
                     goto switched;
@@ -292,9 +306,10 @@ static int set_light_leds(struct light_state_t const *state, int type)
             err = write_leds(led);
 switched:
             g_cur_led = i;
-        }
-        else
+            ALOGDD("g_cur_led=%d", g_cur_led);
+        } else {
             err = write_leds(led);
+        }
     }
     return err;
 }
