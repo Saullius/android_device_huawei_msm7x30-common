@@ -118,7 +118,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Wi-Fi
 PRODUCT_PROPERTY_OVERRIDES += \
-    wifi.interface=eth0 \
+    wifi.interface=wlan0 \
     wifi.supplicant_scan_interval=15
 
 # These are the hardware-specific features
