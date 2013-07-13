@@ -156,17 +156,17 @@ PRODUCT_COPY_FILES += \
 # BLUETOOTH
 PRODUCT_COPY_FILES += \
     device/huawei/msm7x30-common/prebuilt/etc/dhcpcd/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
-    device/huawei/msm7x30-common/prebuilt/etc/bluetooth/BCM4329.hcd:system/etc/firmware/BCM4329.hcd
+    device/huawei/msm7x30-common/prebuilt/vendor/firmware/BCM4329B1_002.002.023.0797.0863.hcd:system/etc/firmware/BCM4329B1_002.002.023.0797.0863.hcd
     
 # WIFI
 PRODUCT_COPY_FILES += \
-    device/huawei/msm7x30-common/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    device/huawei/msm7x30-common/prebuilt/wifi/nvram.txt:system/vendor/firmware/nvram.txt
+    device/huawei/msm7x30-common/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
 
 PRODUCT_COPY_FILES += \
-    device/huawei/msm7x30-common/prebuilt/vendor/firmware/fw_bcm4329.bin:system/vendor/firmware/fw_bcm4329.bin \
-    device/huawei/msm7x30-common/prebuilt/vendor/firmware/fw_bcm4329_abg.bin:system/vendor/firmware/fw_bcm4329_abg.bin \
-    device/huawei/msm7x30-common/prebuilt/vendor/firmware/fw_bcm4329_apsta.bin:system/vendor/firmware/fw_bcm4329_apsta.bin
+    device/huawei/msm7x30-common/prebuilt/vendor/firmware/fw_bcmdhd.bin:system/vendor/firmware/bcmdhd.bin \
+    device/huawei/msm7x30-common/prebuilt/vendor/firmware/fw_bcmdhd_apsta.bin:system/vendor/firmware/fw_bcmdhd_apsta.bin \
+    device/huawei/msm7x30-common/prebuilt/vendor/firmware/fw_bcmdhd_p2p.bin:system/vendor/firmware/fw_bcmdhd_p2p.bin \
+    device/huawei/msm7x30-common/prebuilt/etc/bcmdhd.cal:system/vendor/firmware/bcmdhd.cal
 
 # Firmware
 PRODUCT_COPY_FILES += \

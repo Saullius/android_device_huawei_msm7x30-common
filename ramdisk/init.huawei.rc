@@ -227,7 +227,7 @@ service wpa_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant -Dwext 
     disabled
     oneshot
 
-service hciattach /system/bin/brcm_patchram_plus -d --enable_hci --enable_lpm --baudrate 3000000 --patchram /etc/firmware/BCM4329.hcd /dev/ttyHS0
+service hciattach /system/bin/brcm_patchram_plus -d --enable_hci --enable_lpm --baudrate 3000000 --patchram /etc/firmware/BCM4329B1_002.002.023.0797.0863.hcd /dev/ttyHS0
     user bluetooth
     group qcom_oncrpc bluetooth net_bt_admin
     disabled
