@@ -123,13 +123,13 @@
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
         <item>41</item>
-	<item>55</item>
+        <item>55</item>
         <item>61</item>
         <item>81</item>
-	<item>100</item>
+        <item>100</item>
         <item>112</item>
         <item>163</item>
-	<item>198</item>
+        <item>198</item>
         <item>231</item>
         <item>255</item>
     </integer-array>
@@ -179,13 +179,16 @@
 
     <bool name="config_ui_enableFadingMarquee">false</bool>
 
-    <!-- Package name providing network location support. -->
-<!--    <string name="config_networkLocationProviderPackageName" translatable="false">com.google.android.location</string>
--->
-    <!-- Package name providing geocoder API support. -->
-<!--    <string name="config_geocodeProviderPackageName" translatable="false">com.google.android.location</string>
--->
     <!-- Is the notification LED intrusive? Used to decide if there should be a disable option -->
     <bool name="config_intrusiveNotificationLed">true</bool>
+
+    <!-- Indicate whether the SD card is accessible without removing the battery. -->
+    <bool name="config_batterySdCardAccessibility">true</bool>
+
+    <!-- Does the battery LED support multiple colors? Used to decide if the user can change the colors -->
+    <bool name="config_multiColorBatteryLed">true</bool>
+
+    <!-- Is the battery LED intrusive? Used to decide if there should be a disable option -->
+    <bool name="config_intrusiveBatteryLed">true</bool>
 
 </resources>
