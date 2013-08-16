@@ -9,6 +9,7 @@ ARCH_ARM_HAVE_TLS_REGISTER := true
 ARCH_ARM_HAVE_NEON :=true
 ARCH_ARM_HAVE_VFP := true
 TARGET_HAVE_TSLIB := true
+TARGET_CPU_VARIANT:= cortex-a8
 BOARD_WANTS_EMMC_BOOT := true
 
 TARGET_QCOM_DISPLAY_VARIANT := legacy
@@ -74,8 +75,8 @@ WEBCORE_INPAGE_VIDEO := true
 # Wifi
 WPA_SUPPLICANT_VERSION           := VER_0_8_X
 BOARD_WPA_SUPPLICANT_DRIVER      := WEXT
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
-BOARD_WLAN_DEVICE                := bcm4329
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
+BOARD_WLAN_DEVICE                := bcmdhd
 WIFI_DRIVER_MODULE_NAME          := "bcm4329"
 WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/bcm4329.ko"
 WIFI_DRIVER_FW_PATH_STA          := "/system/vendor/firmware/fw_bcm4329.bin"
@@ -119,10 +120,12 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 RECOVERY_CHARGEMODE := true
 BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun0/file"
 TARGET_RECOVERY_INITRC := device/huawei/msm7x30-common/recovery/recovery.rc
-TARGET_RECOVERY_FSTAB := device/huawei/msm7x30-common/recovery_recovery.fstab
+#TARGET_RECOVERY_FSTAB := device/huawei/msm7x30-common/recovery_recovery.fstab
 BOARD_RECOVERY_RMT_STORAGE := true
 #BOARD_CUSTOM_GRAPHICS := ../../../device/huawei/msm7x30-common/recovery/graphics_cn.c
 TARGET_PREBUILT_RECOVERY_KERNEL := device/huawei/msm7x30-common/recovery_kernel
+TARGET_RECOVERY_FSTAB            := device/huawei/msm7x30-common/ramdisk/fstab.huawei
+RECOVERY_FSTAB_VERSION           := 2
 
 # Custom releasetools for old partition table.
 TARGET_PROVIDES_RELEASETOOLS := true

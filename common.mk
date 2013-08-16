@@ -17,8 +17,6 @@ DEVICE_PACKAGE_OVERLAYS += device/huawei/msm7x30-common/overlay
 PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
-ADDITIONAL_DEFAULT_PROPERTIES += persist.service.adb.enable=1
-
 # Live Wallpapers
 PRODUCT_PACKAGES += \
     LiveWallpapers \
@@ -111,6 +109,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.hwc.fakevsync=1 \
     debug.composition.type=gpu \
     ro.opengles.version=131072 \
+    ro.bq.gpu_to_cpu_unsupported=1 \
     debug.sf.hw=1 \
     com.qc.hardware=true \
     DEVICE_PROVISIONED=1 \
@@ -140,12 +139,12 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/huawei/msm7x30-common/ramdisk/init.huawei.rc:root/init.huawei.rc \
     device/huawei/msm7x30-common/ramdisk/init.huawei.usb.rc:root/init.huawei.usb.rc \
-    device/huawei/msm7x30-common/ramdisk/ueventd.huawei.rc:root/ueventd.huawei.rc
+    device/huawei/msm7x30-common/ramdisk/ueventd.huawei.rc:root/ueventd.huawei.rc \
+    device/huawei/msm7x30-common/ramdisk/fstab.huawei:root/fstab.huawei
 
 # ETC
 PRODUCT_COPY_FILES += \
     device/huawei/msm7x30-common/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
-    device/huawei/msm7x30-common/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
     device/huawei/msm7x30-common/prebuilt/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
     device/huawei/msm7x30-common/prebuilt/etc/init.qcom.sdio.sh:system/etc/init.qcom.sdio.sh \
     device/huawei/msm7x30-common/prebuilt/etc/AudioFilter.csv:system/etc/AudioFilter.csv \
