@@ -1,5 +1,7 @@
 USE_CAMERA_STUB := false
 
+$(shell mkdir -p $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/)
+
 # Platform
 TARGET_ARCH := arm
 TARGET_CPU_ABI := armeabi-v7a
@@ -99,9 +101,9 @@ BOARD_GPS_LIBRARIES := libloc_api
 TARGET_PROVIDES_LIBLIGHT := true
 
 # Kernel
-TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.4.3
-TARGET_KERNEL_SOURCE := kernel/huawei/honor
-BOARD_KERNEL_CMDLINE := console=ttyDCC0 androidboot.hardware=huawei
+# TARGET_KERNEL_SOURCE := kernel/huawei/u8860-new
+# TARGET_KERNEL_CONFIG := cm_u8860_defconfig
+BOARD_KERNEL_CMDLINE := console=ttyDCC0 androidboot.hardware=huawei androidboot.emmc=true
 BOARD_INSTALLER_CMDLINE := $(BOARD_KERNEL_CMDLINE)
 BOARD_KERNEL_BASE := 0x00200000
 BOARD_KERNEL_PAGESIZE := 4096
@@ -121,8 +123,8 @@ BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun0/file"
 TARGET_RECOVERY_INITRC := device/huawei/msm7x30-common/recovery/recovery.rc
 TARGET_RECOVERY_FSTAB := device/huawei/msm7x30-common/recovery_recovery.fstab
 BOARD_RECOVERY_RMT_STORAGE := true
-#BOARD_CUSTOM_GRAPHICS := ../../../device/huawei/msm7x30-common/recovery/graphics_cn.c
-TARGET_PREBUILT_RECOVERY_KERNEL := device/huawei/msm7x30-common/recovery_kernel
+# BOARD_CUSTOM_GRAPHICS := ../../../device/huawei/msm7x30-common/recovery/graphics.c
+# TARGET_PREBUILT_RECOVERY_KERNEL := device/huawei/msm7x30-common/recovery_kernel
 
 # Custom releasetools for old partition table.
 TARGET_PROVIDES_RELEASETOOLS := true
